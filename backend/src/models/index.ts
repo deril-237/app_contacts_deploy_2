@@ -250,10 +250,10 @@ export default async function initDb() {
 
   /**create admin */
   await User.findOrCreate({
-    where: { email: 'deffofossoderil@gmail.com' },
+    where: { email: process.env.EMAIL_ADMIN },
     defaults: {
-      email: 'deffofossoderil@gmail.com',
-      name: 'deril',
+      email: process.env.EMAIL_ADMIN as string,
+      name: process.env.NAME_ADMIN as string,
       roleId: listRole.ADMIN?.id,
       verify: true,
       password: await bcrypt.hash(process.env.DEFAULT_PASSWORD_ADMIN as string, parseInt(process.env.SALT_HASH as string))
