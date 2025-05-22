@@ -24,7 +24,6 @@ const ContactController = {
   },
 
   async getAll(req: Request, res: Response, next: NextFunction) {
-    console.log(req.get('host'));
     const { error, value: { page, limit } } = joi.object<{ page: number, limit: number }>({
       page: joi.number().default(0),
       limit: joi.number().default(50),
@@ -154,7 +153,6 @@ const ContactController = {
         return;
       }
 
-      console.log(contact.pathPhoto);
       if ((req.file && contact.pathPhoto) || req.body.photo === null) {
         deleteFile(contact.pathPhoto);
       }

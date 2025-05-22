@@ -10,7 +10,7 @@ export default class Database {
         process.env.DB_USERNAME as string,
         process.env.DB_PASSWORD as string,
         {
-          host: 'localhost',
+          host: process.env.DB_HOST,
           // port: 3306,
           dialect: 'mysql',
           logging: console.log
