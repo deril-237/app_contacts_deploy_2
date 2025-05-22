@@ -38,11 +38,11 @@ const multerConfigMiddleware = {
       const deleteFile = (file: Express.Multer.File) => {
         const filePath = path.join(folderUpload, file.filename);
         fs.unlink(filePath, (err) => {
-          /*if (err) {
+          if (err) {
             console.error(`Erreur lors de la suppression de ${file.filename}:`, err);
           } else {
             console.log(`Fichier supprimé : ${file.filename}`);
-          }*/
+          }
         });
       };
 
@@ -63,6 +63,12 @@ const multerConfigMiddleware = {
       next();
     }
   },
+
+  errorUpload: (): ErrorRequestHandler => {
+    return (err, req, res, next) => {
+      console.log(err);
+    }
+  }
 };
 
 export default multerConfigMiddleware;

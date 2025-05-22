@@ -49,6 +49,7 @@ const AuthController = {
 
     if (error) {
       res.status(400).json({ message: error.details.map(err => err.message).join("\n ") });
+      console.log(error);
       return;
     }
 
@@ -121,6 +122,7 @@ const AuthController = {
       // verify if email have a account
       // transation = await Database.getDb().transaction();
       let user: User | null = await User.findOne({ where: { email: data.email } });
+      console.log(user);
       if (user && user.verify) {
         res.status(400).json({ message: 'A account created with this email. Please retry with ohter email' });
         return;
